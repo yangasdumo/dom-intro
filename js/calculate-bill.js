@@ -14,7 +14,7 @@ const billStringElement = document.querySelector(".billString");
     var billTotal = 0;
     //loop over all the bill items
     for (var i=0;i<billItems.length;i++){
-        var billItem = billItems[i].trim();
+        var billItem = billItems[i].trim().toLowerCase();
         if (billItem === "call"){
             billTotal += 2.75;
         }
@@ -22,14 +22,14 @@ const billStringElement = document.querySelector(".billString");
             billTotal += 0.75;
         }
     }
-    
+      
     //round to two decimals
      roundedBillTotal = billTotal.toFixed(2);
     billTotalElement.innerHTML = roundedBillTotal;
     n()
 }
 function n() {
-
+          
     if ( roundedBillTotal > 30) {
         billTotalElement.classList.remove("warning");
         billTotalElement.classList.add("danger");
