@@ -44,14 +44,13 @@ function settingsBill(){
     // get the value entered in the billType textfield
     var checkedRadioBtn= document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
-
     if (checkedRadioBtn) {
         var billItemTypeWithSettings = checkedRadioBtn.value.toLowerCase();
 
         // update the correct total
         if(billItemTypeWithSettings === "call") {
             callSet+= callsCostSettings
-
+              
         }
         else if (billItemTypeWithSettings === "sms") {
             smsSet += smsCostSettings
@@ -60,14 +59,20 @@ function settingsBill(){
         smsSettings.innerHTML =smsSet  .toFixed(2);
         let totals = callSet+ smsSet;
         total.innerHTML = totals.toFixed(2);
-
-        if (totals >= warninglevel) {
-            total.classList.add("warning");
-            total.classList.remove("danger");
-        }
-        else if (totals>= criticallevel) {
+        
+        total.classList.remove("warning");
+        total.classList.remove("danger");
+        
+        if (totals >= criticallevel && totals > warninglevel) {
             total.classList.add("danger");
-            total.classList.remove("warning");
+        }
+        else if ( totals >= warninglevel  ) {
+            total.classList.add("warning");
+            
+        }
+        if (Number(totals) >= Number(criticallevel) ){
+            buttons.disabled();
+
         }
     }
 }

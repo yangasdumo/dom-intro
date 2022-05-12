@@ -40,12 +40,12 @@ function billItem() {
         //update the totals that is displayed on the screen.
 
         // var roundedBillTotal = totalPhoneBill(validateCaps);
-
+          
         callsTotalElem1.innerHTML = callsTotal.toFixed(2);       
         smsTotalElem1.innerHTML = smsTotal.toFixed(2);
         totalBill = callsTotal + smsTotal;
         totalCostElem1.innerHTML = totalBill.toFixed(2);
-
+                  
         if (totalBill >= 50) {
             totalCostElem1.classList.add("danger");
         }
