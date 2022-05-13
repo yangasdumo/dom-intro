@@ -1,7 +1,7 @@
 // get a reference to the sms or call radio buttons
 const callSettings = document.querySelector(".callTotalSettings");
 const smsSettings = document.querySelector(".smsTotalSettings");
-const total = document.querySelector(".totalSettings")
+const total = document.querySelector(".totalSettings");
 // get refences to all the settings fields
 const calls = document.querySelector(".callCostSetting");
 const sms = document.querySelector(".smsCostSetting");

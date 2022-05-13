@@ -1,3 +1,4 @@
+
 # dom-intro
 
 A brief introduction to the browser Document Object Model (DOM)
