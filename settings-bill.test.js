@@ -70,7 +70,7 @@ describe('The bill with settings of factory functions', function () {
     describe('Use Values', function () {
         it('should be able to use the call set use', function () {
             let SettingsBill = BillWithSettings();
-        
+            SettingsBill.SetCriticalLevel(10);
             SettingsBill.SetCallCost(2.25);
             SettingsBill.SetSmsCost(0.85);
 
@@ -86,6 +86,7 @@ describe('The bill with settings of factory functions', function () {
         it('should be able to use the call set of 2 calls at 1.35 each', function () {
             let SettingsBill = BillWithSettings();
 
+            SettingsBill.SetCriticalLevel(10);
             SettingsBill.SetCallCost(1.35);
             SettingsBill.SetSmsCost(0.85);
 
@@ -101,6 +102,7 @@ describe('The bill with settings of factory functions', function () {
         it('should be able to send 2 sms`s at 0.85 each', function () {
             let SettingsBill = BillWithSettings();
 
+            SettingsBill.SetCriticalLevel(10);
             SettingsBill.SetCallCost(1.35);
             SettingsBill.SetSmsCost(0.85);
 
@@ -116,6 +118,7 @@ describe('The bill with settings of factory functions', function () {
         it('should be able to send 2 sms`s at 0.85 each and make 1 call 1.35', function () {
             let SettingsBill = BillWithSettings();
 
+            SettingsBill.SetCriticalLevel(10);
             SettingsBill.SetCallCost(1.35);
             SettingsBill.SetSmsCost(0.85);
 
@@ -136,12 +139,12 @@ describe('The bill with settings of factory functions', function () {
                 SettingsBill.SetSmsCost(0.85);
                 SettingsBill.SetWarningLevel(5);
                 SettingsBill.SetCriticalLevel(10);
-
+                
                 SettingsBill.MakeCall();
                 SettingsBill.MakeCall();
                 SettingsBill.MakeCall();
                 SettingsBill.MakeCall();
-
+                 
                 assert.equal("warning", SettingsBill.totalClassName());
 
             });
@@ -150,15 +153,56 @@ describe('The bill with settings of factory functions', function () {
 
                 SettingsBill.SetCallCost(2.50);
                 SettingsBill.SetSmsCost(0.85);
-                SettingsBill.SetWarningLevel(10);
-
-
+                SettingsBill.SetCriticalLevel(10);
+                
+                
                 SettingsBill.MakeCall();
                 SettingsBill.MakeCall();
                 SettingsBill.MakeCall();
                 SettingsBill.MakeCall();
 
                 assert.equal("critical", SettingsBill.totalClassName());
+
+            });
+            it('should stop the Total Call cost from increasing when critical level has been reached', function () {
+                let SettingsBill = BillWithSettings();
+
+                SettingsBill.SetCallCost(2.50);
+                SettingsBill.SetSmsCost(0.85);
+                SettingsBill.SetCriticalLevel(10);
+                
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+
+                assert.equal("critical", SettingsBill.totalClassName());
+                assert.equal(10, SettingsBill.getTotalCallCost());
+            });
+            it('should allow the total to increase after reaching the critical Level & upping the critical level.', function () {
+                let SettingsBill = BillWithSettings();
+
+                SettingsBill.SetCallCost(2.50);
+                SettingsBill.SetSmsCost(0.85);
+                SettingsBill.SetWarningLevel(8);
+                SettingsBill.SetCriticalLevel(10);
+                
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+
+                assert.equal("critical", SettingsBill.totalClassName());
+                assert.equal(10, SettingsBill.getTotalCallCost());
+
+                SettingsBill.SetCriticalLevel(20);
+
+                assert.equal("warning", SettingsBill.totalClassName());
+                SettingsBill.MakeCall();
+                SettingsBill.MakeCall();
+                assert.equal(15, SettingsBill.getTotalCallCost());
 
             });
         });
