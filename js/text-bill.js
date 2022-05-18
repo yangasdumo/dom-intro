@@ -37,7 +37,7 @@ function textBillTotal(){
     //update the totals that is displayed on the screen.
       
     // var roundedBillTotal = totalPhoneBill(validateCaps);
-
+    
     callsTotalElem.innerHTML = callsTotal.toFixed(2);
     smsTotalElem.innerHTML = smsTotal.toFixed(2);
     totalBill = callsTotal + smsTotal;
