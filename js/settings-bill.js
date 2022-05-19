@@ -44,7 +44,8 @@ updateSettings.addEventListener('click', function () {
 // * display the latest total on the screen.
 // * check the value thresholds and display the total value in the right color.
 
-function settingsBill() {
+function settingsBills() {
+    console.log("works")
     // get the value entered in the billType textfield
     var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
@@ -75,4 +76,4 @@ function addclass(){
 
 }
 
-buttons.addEventListener('click', settingsBill);
+buttons.addEventListener('click',settingsBills);
