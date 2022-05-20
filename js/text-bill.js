@@ -15,8 +15,8 @@ const smsTotalElem = document.querySelector(".smsTotalOne");
 const totalCostElem = document.querySelector(".totalOne");
 
 var totalBill = 0;
-var callsTotal = 0;
-var smsTotal = 0;
+var callsTotals = 0;
+var smsTotals = 0;
 //create a variable that will keep track of the total bill
 callsTotalElem.innerHTML = callsTotal.toFixed(2);
 smsTotalElem.innerHTML = smsTotal.toFixed(2);
@@ -28,19 +28,19 @@ function textBillTotal(){
     var validateCaps = billTypeEntered.toUpperCase()
     // update the correct total
     if (validateCaps === "CALL"){
-        callsTotal += 2.75
+        callsTotals += 2.75
     }
     else if (validateCaps === "SMS"){
-        smsTotal += 0.75;
+        smsTotals += 0.75;
     }
    
     //update the totals that is displayed on the screen.
       
     // var roundedBillTotal = totalPhoneBill(validateCaps);
     
-    callsTotalElem.innerHTML = callsTotal.toFixed(2);
-    smsTotalElem.innerHTML = smsTotal.toFixed(2);
-    totalBill = callsTotal + smsTotal;
+    callsTotalElem.innerHTML = callsTotals.toFixed(2);
+    smsTotalElem.innerHTML = smsTotals.toFixed(2);
+    totalBill = callsTotals + smsTotals;
     totalCostElem.innerHTML = totalBill.toFixed(2);
     
          
