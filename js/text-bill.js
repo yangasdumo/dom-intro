@@ -18,8 +18,8 @@ var totalBill = 0;
 var callsTotals = 0;
 var smsTotals = 0;
 //create a variable that will keep track of the total bill
-callsTotalElem.innerHTML = callsTotal.toFixed(2);
-smsTotalElem.innerHTML = smsTotal.toFixed(2);
+callsTotalElem.innerHTML = callsTotals.toFixed(2);
+smsTotalElem.innerHTML = smsTotals.toFixed(2);
 totalCostElem.innerHTML = totalBill.toFixed(2);
 
 function textBillTotal(){
